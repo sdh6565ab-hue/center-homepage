@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국중소기업지원센터 | 정책자금 · 인증 · 무상지원</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans KR", "Malgun Gothic", "맑은 고딕", sans-serif; color: #1f2937; line-height: 1.6; background: #fff; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 100; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { font-weight: 800; font-size: 19px; color: #1e3a8a; }
+  .logo span { color: #f59e0b; }
+  .menu { display: flex; gap: 26px; font-weight: 600; font-size: 15px; }
+  .menu a:hover { color: #2563eb; }
+  .tel-btn { background: #f59e0b; color: #1f2937; padding: 10px 18px; border-radius: 8px; font-weight: 800; font-size: 15px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #fff; padding: 96px 0; }
+  .hero .wrap { text-align: center; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,.15); padding: 6px 14px; border-radius: 999px; font-size: 14px; margin-bottom: 20px; }
+  .hero h1 { font-size: 40px; line-height: 1.35; margin-bottom: 18px; }
+  .hero h1 em { font-style: normal; color: #fbbf24; }
+  .hero p { font-size: 18px; opacity: .92; margin-bottom: 34px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { padding: 15px 28px; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block; }
+  .btn-primary { background: #f59e0b; color: #1f2937; }
+  .btn-outline { border: 2px solid #fff; color: #fff; }
+  .btn:hover { opacity: .9; }
+  .hero-phone { margin-top: 28px; font-size: 15px; opacity: .9; }
+  .hero-phone strong { font-size: 26px; color: #fbbf24; display: block; margin-top: 4px; }
+
+  /* Sections */
+  section.block { padding: 84px 0; }
+  .alt { background: #f8fafc; }
+  .sec-head { text-align: center; margin-bottom: 48px; }
+  .sec-head small { color: #2563eb; font-weight: 700; letter-spacing: 1px; }
+  .sec-head h2 { font-size: 32px; color: #1e3a8a; margin: 8px 0 10px; }
+  .sec-head p { color: #6b7280; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+  .card { background: #fff; border-radius: 14px; padding: 30px 24px; border: 1px solid #e5e7eb; transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(30,58,138,.12); }
+  .icon { width: 52px; height: 52px; border-radius: 12px; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 16px; }
+  .card h3 { font-size: 19px; color: #1e3a8a; margin-bottom: 8px; }
+  .card p { color: #4b5563; font-size: 15px; }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+  .step { position: relative; background: #fff; border-radius: 14px; padding: 30px 24px; border: 1px solid #e5e7eb; }
+  .step .no { display: inline-flex; width: 36px; height: 36px; border-radius: 50%; background: #1e3a8a; color: #fff; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 14px; }
+  .step h3 { font-size: 18px; color: #1e3a8a; margin-bottom: 8px; }
+  .step p { color: #4b5563; font-size: 15px; }
+
+  /* Cases */
+  .case { background: #fff; border-radius: 14px; padding: 26px 24px; border-left: 4px solid #f59e0b; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
+  .case .tag { font-size: 13px; color: #92400e; background: #fef3c7; display: inline-block; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; font-weight: 700; }
+  .case h4 { font-size: 17px; color: #111827; margin-bottom: 8px; }
+  .case p { font-size: 14.5px; color: #4b5563; }
+  .case .result { margin-top: 12px; font-weight: 700; color: #1e3a8a; font-size: 15px; }
+  .note { text-align: center; color: #9ca3af; font-size: 13px; margin-top: 24px; }
+
+  /* Contact */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+  .info-box { background: #1e3a8a; color: #fff; padding: 36px; border-radius: 16px; }
+  .info-box h3 { font-size: 22px; margin-bottom: 14px; }
+  .info-box .phone { font-size: 34px; font-weight: 800; color: #fbbf24; display: block; margin: 8px 0 18px; }
+  .info-box a.phone:hover { opacity: .85; }
+  .info-box li { list-style: none; margin-bottom: 10px; opacity: .95; font-size: 15px; }
+  .info-box ul { padding: 0; }
+  form { background: #fff; padding: 34px; border-radius: 16px; border: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 16px; }
+  form label { font-weight: 700; font-size: 14px; color: #374151; }
+  form input, form select, form textarea { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; font-family: inherit; margin-top: 6px; }
+  form textarea { min-height: 96px; resize: vertical; }
+  .consent { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: #4b5563; font-weight: 500; }
+  .consent input { width: auto; margin-top: 3px; }
+  form button { background: #1e3a8a; color: #fff; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+  form button:hover { background: #1e40af; }
+  .msg { color: #059669; font-weight: 700; text-align: center; display: none; }
+
+  footer { background: #111827; color: #9ca3af; padding: 36px 0; font-size: 14px; }
+  footer strong { color: #fff; }
+  footer p { margin-bottom: 6px; }
+
+  @media (max-width: 800px) {
+    .menu { display: none; }
+    .hero h1 { font-size: 28px; }
+    .sec-head h2 { font-size: 26px; }
+    .contact-wrap { grid-template-columns: 1fr; }
+  }
+
+  /* Floating consult banner */
+  .float-consult { position: fixed; right: 20px; bottom: 20px; z-index: 200; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .float-consult button, .float-consult a { border: none; cursor: pointer; font-family: inherit; font-weight: 800; font-size: 16px; padding: 15px 22px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .fc-main { background: #f59e0b; color: #1f2937; animation: pulse 2.2s infinite; }
+  .fc-tel { background: #1e3a8a; color: #fff; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  .modal-bg { position: fixed; inset: 0; background: rgba(17,24,39,.6); z-index: 300; display: none; align-items: center; justify-content: center; padding: 16px; }
+  .modal-bg.open { display: flex; }
+  .modal { background: #fff; border-radius: 16px; width: 100%; max-width: 440px; max-height: 92vh; overflow-y: auto; position: relative; }
+  .modal h3 { background: #1e3a8a; color: #fff; padding: 20px 24px; font-size: 20px; border-radius: 16px 16px 0 0; }
+  .modal h3 small { display: block; font-size: 13px; font-weight: 500; opacity: .85; margin-top: 4px; }
+  .modal .close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; }
+  .modal form { border: none; border-radius: 0 0 16px 16px; padding: 24px; }
+  @media (max-width: 800px) { .float-consult { left: 12px; right: 12px; bottom: 12px; flex-direction: row; } .float-consult button, .float-consult a { flex: 1; text-align: center; padding: 14px 8px; } }
+  body { padding-bottom: 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">한국중소기업<span>지원센터</span></div>
+    <nav class="menu">
+      <a href="#loan">정책자금</a>
+      <a href="#jobs">고용무상지원금</a>
+      <a href="#cert">기업인증</a>
+      <a href="#solar">태양광</a>
+      <a href="#cases">승인 사례</a>
+      <a href="#contact">상담신청</a>
+    </nav>
+    <a class="tel-btn" href="tel:1688-3523">📞 1688-3523</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">2026년 지원사업 상담 진행 중</span>
+    <h1>정책자금 · 고용 무상지원금 · 기업인증<br><em>전문가와 1:1 무료 상담</em></h1>
+    <p>운전자금 · 시설자금 · ISO · 연구전담부서 · 벤처인증까지<br>중소기업 환경에 맞춘 전문위원이 함께합니다.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#contact">무료 상담 신청</a>
+      <a class="btn btn-outline" href="tel:1688-3523">전화 상담하기</a>
+    </div>
+    <div class="hero-phone">1:1 전화상담<strong>1688-3523</strong></div>
+  </div>
+</div>
+
+<section class="block" id="loan">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>POLICY FUND</small>
+      <h2>정책자금 컨설팅</h2>
+      <p>운전자금부터 시설자금까지, 기업에 맞는 자금을 찾아드립니다</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">💰</div><h3>운전자금</h3><p>원자재 구입, 인건비 등 일상 운영에 필요한 자금을 연계합니다.</p></div>
+      <div class="card"><div class="icon">🏭</div><h3>시설자금</h3><p>공장 설립, 설비 투자, 기계 도입에 필요한 정책자금을 안내합니다.</p></div>
+      <div class="card"><div class="icon">📝</div><h3>사업계획서 작성</h3><p>심사 기준에 맞춘 사업계획서 작성과 서류 준비를 지원합니다.</p></div>
+      <div class="card"><div class="icon">🏦</div><h3>신용보증·보증기관 연계</h3><p>신용보증기금, 기술보증기금, 신용보증재단 등 기관별 전략을 설계합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="jobs">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>FREE SUPPORT</small>
+      <h2>고용 무상지원금</h2>
+      <p>조건에 해당하면 비용 부담 없이 받을 수 있는 고용 지원금을 찾아드립니다</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">👥</div><h3>고용유지·창출 지원</h3><p>정규직 채용, 고용 유지에 따른 정부 지원금을 확인합니다.</p></div>
+      <div class="card"><div class="icon">🎓</div><h3>청년·경력단절 여성 지원</h3><p>대상별 채용 지원 사업을 찾아 신청 절차까지 안내합니다.</p></div>
+      <div class="card"><div class="icon">🧾</div><h3>경정청구 점검</h3><p>놓치고 있던 세금 환급 가능성을 점검하고 경정청구를 대행합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="cert">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>CERTIFICATION</small>
+      <h2>기업인증</h2>
+      <p>인증은 정책자금과 입찰에서 강력한 경쟁력이 됩니다</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">🏅</div><h3>벤처기업 인증</h3><p>벤처기업 확인 요건 점검부터 신청 서류 작성까지 지원합니다.</p></div>
+      <div class="card"><div class="icon">🔬</div><h3>기업부설연구소·연구전담부서</h3><p>연구 인력과 설비 요건을 갖춘 부설 조직 설립을 도와드립니다.</p></div>
+      <div class="card"><div class="icon">📋</div><h3>ISO 9001 · ISO 14001</h3><p>품질경영·환경경영 인증 취득을 위한 컨설팅과 심사 준비를 지원합니다.</p></div>
+      <div class="card"><div class="icon">🤝</div><h3>이노비즈·메인비즈</h3><p>기술혁신형·경영혁신형 중소기업 인증 취득을 안내합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="solar">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>ENERGY</small>
+      <h2>전기세 감면 · 태양광 발전설비</h2>
+      <p>에너지 비용을 줄이고 신재생 설비 지원까지 함께 검토합니다</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="icon">⚡</div><h3>전기요금 감면 점검</h3><p>업종과 계약 조건에 따라 받을 수 있는 전기요금 감면 제도를 확인합니다.</p></div>
+      <div class="card"><div class="icon">☀️</div><h3>태양광 발전설비</h3><p>설비 도입 검토, 보조금 연계, 설치 및 유지관리 상담을 제공합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>PROCESS</small>
+      <h2>상담 진행 절차</h2>
+      <p>복잡한 서류 작업은 전문가가 직접 도와드립니다</p>
+    </div>
+    <div class="grid steps">
+      <div class="step"><div class="no">1</div><h3>무료 진단</h3><p>기업 현황과 세금 체납 여부 등 기본 요건을 확인합니다.</p></div>
+      <div class="step"><div class="no">2</div><h3>맞춤 매칭</h3><p>정책자금, 고용지원, 인증 중 해당 사업을 선별해 안내합니다.</p></div>
+      <div class="step"><div class="no">3</div><h3>서류 준비·신청</h3><p>사업계획서 작성부터 제출까지 전담 위원이 함께합니다.</p></div>
+      <div class="step"><div class="no">4</div><h3>사후 관리</h3><p>승인 이후 집행과 보고, 추가 자금 연계까지 관리합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>CASES</small>
+      <h2>상담 사례</h2>
+      <p>실제 상담 기업 사례 (기업명은 비공개 처리되었습니다)</p>
+    </div>
+    <div class="grid">
+      <div class="case"><span class="tag">식품가공업 · 김포</span><h4>여성기업 자금 컨설팅</h4><p>기술력은 뛰어나지만 자금 진행에 어려움을 겪어 사업계획서와 전반적인 상황을 컨설팅했습니다.</p><div class="result">중소벤처기업진흥공단 3억 승인</div></div>
+      <div class="case"><span class="tag">편의점 · 구미</span><h4>이자보전 연계 자금</h4><p>신용보증재단 자금과 경상북도 이자보전 사업을 연계해 금리 부담을 낮췄습니다.</p><div class="result">신용보증재단 7천만원 승인</div></div>
+      <div class="case"><span class="tag">지게차 제조 · 평택</span><h4>1년간 막혔던 자금 승인</h4><p>여러 차례 거절되었던 기업에 경기도 자금을 재설계하여 신청을 도왔습니다.</p><div class="result">신용보증재단 2억 승인</div></div>
+      <div class="case"><span class="tag">석재 가공 · 대전</span><h4>보증 한도 밖의 자금 연계</h4><p>기존 보증 이용으로 어렵다고 판단했던 항목을 성장 혁신자금으로 연계했습니다.</p><div class="result">중소벤처기업진흥공단 1억 5천 승인</div></div>
+      <div class="case"><span class="tag">휴대폰 매장 · 파주</span><h4>단계별 보증 전략 설계</h4><p>기존 대출을 정리하고 보증 기관 순서를 재설계해 추가 자금을 확보했습니다.</p><div class="result">신용보증기금 2억 승인 · 이듬해 추가 1억</div></div>
+      <div class="case"><span class="tag">키오스크 설치 · 소상공인</span><h4>소상공인 디지털 전환 자금</h4><p>키오스크 도입 계획을 바탕으로 소상공인 지원 자금을 연계했습니다.</p><div class="result">소상공인시장진흥공단 5천만원 승인</div></div>
+    </div>
+    <p class="note">※ 위 사례는 과거 상담 결과 예시이며, 승인 여부와 금액은 기업 상황과 심사 결과에 따라 달라질 수 있습니다.</p>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <small>CONSULTATION</small>
+      <h2>상담 신청</h2>
+      <p>남겨주신 내용을 확인 후 영업일 기준 1일 이내 연락드립니다</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="info-box">
+        <h3>1:1 전화상담</h3>
+        <a class="phone" href="tel:1688-3523">📞 1688-3523</a>
+        <ul>
+          <li>🕘 상담시간: 평일 09:00 ~ 17:30 (점심 12:00 ~ 13:00)</li>
+          <li>📍 주소: 서울시 강남구 역삼로 212, 동아빌딩 5층</li>
+          <li>✉️ 이메일: <a href="mailto:sss1512@naver.com">sss1512@naver.com</a></li>
+          <li>🌐 홈페이지: [도메인을 입력하세요]</li>
+        </ul>
+      </div>
+      <form id="consultForm" class="consult-form">
+        <div>
+          <label>회사명 *</label>
+          <input type="text" id="company" name="회사명" required placeholder="예: OO주식회사">
+        </div>
+        <div>
+          <label>담당자 성함 *</label>
+          <input type="text" id="name" name="담당자" required placeholder="홍길동">
+        </div>
+        <div>
+          <label>연락처 *</label>
+          <input type="tel" id="phone" name="연락처" required placeholder="010-0000-0000">
+        </div>
+        <div>
+          <label>상담 분야 *</label>
+          <select id="service" name="상담분야" required>
+            <option value="">선택하세요</option>
+            <option>정책자금</option>
+            <option>고용 무상지원금</option>
+            <option>기업인증</option>
+            <option>전기세 감면</option>
+            <option>태양광 발전설비</option>
+            <option>경정청구</option>
+          </select>
+        </div>
+        <div>
+          <label>문의 내용</label>
+          <textarea id="memo" name="문의내용" placeholder="문의하실 내용을 간단히 적어주세요."></textarea>
+        </div>
+        <label class="consent"><input type="checkbox" required name="개인정보동의" value="동의"> 개인정보 수집 및 이용에 동의합니다. [개인정보처리방침 링크 입력]</label>
+        <button type="submit">상담 신청하기</button>
+        <p class="msg">✅ 상담 신청이 접수되었습니다. 빠른 시일 내 연락드리겠습니다.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>한국중소기업지원센터</strong> | 대표전화 1688-3523 | 서울시 강남구 역삼로 212, 동아빌딩 5층 | sss1512@naver.com</p>
+    <p>본 페이지의 내용은 안내 목적이며, 지원 조건과 내용은 관련 기관 공고에 따라 변경될 수 있습니다.</p>
+    <p>© 2026 Korea SME Support Center. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<!-- 상시 노출 상담신청 배너 -->
+<div class="float-consult">
+  <button type="button" class="fc-main" id="openConsult">💬 무료 상담신청</button>
+  <a class="fc-tel" href="tel:1688-3523">📞 1688-3523</a>
+</div>
+
+<div class="modal-bg" id="consultModal">
+  <div class="modal">
+    <button type="button" class="close" id="closeConsult" aria-label="닫기">×</button>
+    <h3>무료 상담신청<small>영업일 기준 1일 이내 연락드립니다</small></h3>
+    <form class="consult-form">
+      <div><label>회사명 *</label><input type="text" name="회사명" required placeholder="예: OO주식회사"></div>
+      <div><label>담당자 성함 *</label><input type="text" name="담당자" required placeholder="홍길동"></div>
+      <div><label>연락처 *</label><input type="tel" name="연락처" required placeholder="010-0000-0000"></div>
+      <div><label>상담 분야 *</label>
+        <select name="상담분야" required>
+          <option value="">선택하세요</option>
+          <option>정책자금</option><option>고용 무상지원금</option><option>기업인증</option>
+          <option>전기세 감면</option><option>태양광 발전설비</option><option>경정청구</option>
+        </select>
+      </div>
+      <div><label>문의 내용</label><textarea name="문의내용" placeholder="문의하실 내용을 간단히 적어주세요."></textarea></div>
+      <label class="consent"><input type="checkbox" required name="개인정보동의" value="동의"> 개인정보 수집 및 이용에 동의합니다.</label>
+      <button type="submit">상담 신청하기</button>
+      <p class="msg"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ===== 설정: 상담신청 내용을 받을 이메일 =====
+  var RECEIVER_EMAIL = "sss1512@naver.com";
+
+  var modal = document.getElementById('consultModal');
+  document.getElementById('openConsult').onclick = function(){ modal.classList.add('open'); };
+  document.getElementById('closeConsult').onclick = function(){ modal.classList.remove('open'); };
+  modal.addEventListener('click', function(e){ if(e.target === modal) modal.classList.remove('open'); });
+
+  document.querySelectorAll('.consult-form').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var msg = form.querySelector('.msg');
+      var btn = form.querySelector('button[type=submit]');
+      var data = new FormData(form);
+      data.append('_subject', '[홈페이지] 상담신청 - ' + (data.get('회사명') || ''));
+      data.append('_template', 'table');
+      data.append('_captcha', 'false');
+      btn.disabled = true; btn.textContent = '전송 중...';
+      fetch('https://formsubmit.co/ajax/' + RECEIVER_EMAIL, { method:'POST', headers:{'Accept':'application/json'}, body:data })
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(j.success === 'true' || j.success === true){
+            msg.style.color = '#059669';
+            msg.textContent = '✅ 상담신청이 정상적으로 신청 완료 되었습니다.';
+            form.reset();
+            if(modal.contains(form)) setTimeout(function(){ modal.classList.remove('open'); msg.style.display='none'; }, 2500);
+          } else { throw new Error('fail'); }
+        })
+        .catch(function(){
+          msg.style.color = '#dc2626';
+          msg.textContent = '전송에 실패했습니다. 전화(1688-3523)로 문의해 주세요.';
+        })
+        .finally(function(){ msg.style.display='block'; btn.disabled=false; btn.textContent='상담 신청하기'; });
+    });
+  });
+</script>
+</body>
+</html>
